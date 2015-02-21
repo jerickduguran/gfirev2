@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="GFire\InvoiceBundle\Entity\InvoiceParticularEntryRepository" name="GFire\InvoiceBundle\Entity\InvoiceParticularEntry" table="gf__invoice_particular_entry">
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="title" type="string" column="title" length="150"/>
+    <field name="amount" type="decimal" column="amount"/>
+    <field name="vatApplication" type="string" column="vat_application" length="60"/>
+    <field name="total" type="decimal" column="total"/>
+    <field name="createdAt" type="datetime" column="created_at"/>
+      <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
+
+      <lifecycle-callbacks>
+          <lifecycle-callback type="prePersist" method="prePersist" />
+          <lifecycle-callback type="postPersist" method="postPersist" />
+      </lifecycle-callbacks>
+
+      <many-to-one target-entity="GFire\CoreBundle\Entity\Tax\FinalWithheld" field="taxFinalWithheld">
+          <join-column name="tax_expanded_withheld_id" referenced-column-name="id" />
+      </many-to-one>
+
+      <many-to-one target-entity="GFire\CoreBundle\Entity\Tax\ExpandedWithheld" field="taxExpandedWithheld">
+          <join-column name="tax_final_withheld_id" referenced-column-name="id" />
+      </many-to-one>
+
+      <many-to-one target-entity="GFire\InvoiceBundle\Entity\Invoice" field="invoice" orphan-removal="true" inversed-by="invoiceParticularEntries">
+          <join-column name="invoice_id" referenced-column-name="id"/>
+          <cascade><cascade-all/></cascade>
+      </many-to-one>
+  </entity>
+</doctrine-mapping>

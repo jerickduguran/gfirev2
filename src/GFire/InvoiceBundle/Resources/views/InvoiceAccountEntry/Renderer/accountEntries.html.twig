@@ -1,0 +1,75 @@
+<thead>
+    <tr>
+        <th>#</th>
+        <th>Account Code</th>
+        <th>General Reference</th>
+        <th>DN Reference</th>
+        <th>Debit</th>
+        <th>Credit</th>
+        <th>Last Update</th>
+        <th>Actions</th>
+    </tr>
+</thead>
+<tbody class="tbody">
+
+    {% if pager|length > 0 %}
+        {%  for account_entry in pager %}
+            <tr>
+                <th scope="row">{{ account_entry.id }} </th>
+                <td>{{ account_entry.chartOfAccount.title }}</td>
+                <td>{{ account_entry.generalLibrary.name }}</td>
+                <td>{{ account_entry.dnReference }}</td>
+                <td>{{ account_entry.debit }}</td>
+                <td>{{ account_entry.credit }}</td>
+                <td>{{ account_entry.updatedAt|date("m/d/Y h:i:s A") }}</td>
+                <td>
+                    <a href="javascript:void(0)"  data-modal-title="Edit Account Entry" data-target-url="{{ path('invoice_accountentry_edit',{'id' :account_entry.id,'invoice_id' : invoice.id }) }}" data-backdrop="static" data-toggle="modal" data-target="#modal-account-entry" class="edit" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+                    <a href="javascript:void(0);" data-backdrop="static" class="delete"  title="delete"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+            </tr>
+     {%  endfor %}
+    {% else %}
+        <tr>
+            <td colspan="8"> <p class="top15 text-center"> No Account Entries</p></td>
+        </tr>
+    {% endif %}
+    <tr>
+        <td colspan="4"></td>
+        <td id="total_debit" class="bold">PHP {{ total.debit|number_format(2, '.', ',') }}</td>
+        <td id="total_credit" class="bold">PHP {{ total.credit|number_format(2, '.', ',') }}</td>
+        <td id="total" colspan="2" class="bold" style="color: #FF0000">PHP {{ total.total|number_format(2, '.', ',') }}</td>
+    </tr>
+    {% if pager.haveToPaginate %}
+        <tr>
+            <td colspan="8" align="right">
+                <nav class="text-right">
+                    <ul class="pagination">
+                        {% if pager.page > 2  %}
+                            <li><a href="{{ path('invoice_accountentry_list',{'invoice_id':invoice.id})}}" class="page_nav">&laquo;</a></li>
+                        {% endif %}
+
+                        {% if pager.page != pager.previouspage %}
+                            <li><a href="{{ path('invoice_accountentry_list',{'invoice_id':invoice.id,'page' : pager.previouspage})}}" title="" class="page_nav">&lsaquo;</a></li>
+                        {% endif %}
+
+                        {% for page in pager.getLinks(5) %}
+                            {% if page == pager.page %}
+                                <li class="active"><a href="{{ path('invoice_accountentry_list',{'invoice_id':invoice.id,'page' : page})}}" class="page_nav">{{ page }}</a></li>
+                            {% else %}
+                                <li><a href="{{ path('invoice_accountentry_list',{'invoice_id':invoice.id,'page' : page})}}" class="page_nav">{{ page }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if pager.page != pager.nextpage %}
+                            <li><a href="{{ path('invoice_accountentry_list',{'invoice_id':invoice.id,'page' : pager.nextpage})}}" title="" class="page_nav">&rsaquo;</a></li>
+                        {% endif %}
+
+                        {% if pager.page != pager.lastpage and pager.lastpage != pager.nextpage %}
+                            <li><a href="{{ path('invoice_accountentry_list',{'invoice_id':invoice.id,'page' : pager.lastpage})}}" title="" class="page_nav">&raquo;</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </td>
+        </tr>
+    {%  endif %}
+</tbody>

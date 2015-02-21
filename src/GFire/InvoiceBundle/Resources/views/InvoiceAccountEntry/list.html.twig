@@ -1,0 +1,74 @@
+<div class="table-responsive">
+    <table class="table table-hover" id="account_entry_list">
+          {% include "GFireInvoiceBundle:InvoiceAccountEntry:Renderer/accountEntries.html.twig" with {pager: pager,total: total, invoice: invoice} %}
+    </table>
+</div>
+
+<div class="row text-right">
+    <div class="col-md-12">
+        <a href="javascript:void(0);" data-modal-title="New Account Entry"  data-target-url="{{ path('invoice_accountentry_new',{'invoice_id' : invoice.id}) }}" class="btn btn-primary btn-add-account-entry" data-backdrop="static" data-toggle="modal" data-target="#modal-account-entry"><i class="glyphicon glyphicon-plus-sign"></i> Add New Entry</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var _modal = null;
+    $(document).ready(function(){
+        //$.blockUI({ message: jyd.loadingMessage(null)});
+        $('#modal-account-entry').on('show.bs.modal', function (event) {
+            var target_url  = event.relatedTarget.dataset.targetUrl;
+            var modalTitle  = event.relatedTarget.dataset.modalTitle;
+                _modal      = $(this);
+                _modal      = $(this);
+            $.ajax({
+                url: target_url,
+                method: 'POST',
+                success: function(resp){
+                    if(resp.success == true) {
+                        _modal.find(".modal-body").html(resp.html);
+                    }
+                }
+            });
+            _modal.find(".modal-title").html(modalTitle);
+
+        });
+
+        $('#modal-account-entry').delegate(".save","click",function(){
+            $("form#invoice_account_entry").submit();
+        });
+
+        var invoice_account_entry_wrapper =  $("#account_entry_list");
+        invoice_account_entry_wrapper.delegate("a.page_nav","click",function(e){
+            $.blockUI({ message: jyd.loadingMessage(null)});
+            e.preventDefault();
+            var next_page = $(this).attr('href');
+            $.ajax({
+                url: next_page,
+                method: 'POST',
+                type: 'json',
+                success: function(resp){
+                    invoice_account_entry_wrapper.html(resp);
+                }
+            });
+        });
+        invoice_account_entry_wrapper.delegate("a.delete","click",function(e){
+            alert('Currently Disabled.');
+        });
+    });
+
+</script>
+
+<div class="modal fade" id="modal-account-entry" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel"></h4>
+                <small> Invoice #: {{ invoice.invoiceNumber }}</small>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default cancel" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary save">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

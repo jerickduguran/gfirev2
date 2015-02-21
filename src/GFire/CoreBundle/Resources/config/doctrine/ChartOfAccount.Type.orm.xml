@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="GFire\CoreBundle\Entity\ChartOfAccount\TypeRepository" name="GFire\CoreBundle\Entity\ChartOfAccount\Type" table="gf__chartofaccount_type">
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="code" type="string" column="code" length="150"/>
+    <field name="title" type="string" column="title" length="150"/>
+    <field name="description" type="text" column="description"/>
+    <field name="enabled" type="boolean" column="enabled"/>
+    <field name="createdAt" type="datetime" column="created_at"/>
+      <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
+
+
+      <one-to-many target-entity="GFire\CoreBundle\Entity\ChartOfAccount" mapped-by="type" field="chartOfAccounts">
+          <cascade>
+              <cascade-all/>
+          </cascade>
+      </one-to-many>
+
+      <many-to-many field="validations" inversed-by="types" target-entity="GFire\CoreBundle\Entity\ChartOfAccount\Validation">
+          <cascade>
+              <cascade-persist/>
+          </cascade>
+          <join-table name="gf__chartofaccount_type_validation">
+              <join-columns>
+                  <join-column name="type_id" referenced-column-name="id">
+                  </join-column>
+              </join-columns>
+              <inverse-join-columns>
+                  <join-column name="validation_id" referenced-column-name="id" />
+              </inverse-join-columns>
+          </join-table>
+      </many-to-many>
+
+      <lifecycle-callbacks>
+          <lifecycle-callback type="prePersist" method="prePersist" />
+          <lifecycle-callback type="postPersist" method="postPersist" />
+      </lifecycle-callbacks>
+  </entity>
+</doctrine-mapping>

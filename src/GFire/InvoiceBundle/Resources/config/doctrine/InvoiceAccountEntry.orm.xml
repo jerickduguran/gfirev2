@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="GFire\InvoiceBundle\Entity\InvoiceAccountEntryRepository" name="GFire\InvoiceBundle\Entity\InvoiceAccountEntry" table="gf__invoice_account_entry">
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="dnReference" type="string" column="dn_reference" length="150" nullable="true"/>
+    <field name="debit" type="decimal" column="debit" nullable="true"/>
+    <field name="credit" type="decimal" column="credit" nullable="true"/>
+    <field name="createdAt" type="datetime" column="created_at"/>
+
+
+      <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
+
+      <lifecycle-callbacks>
+          <lifecycle-callback type="prePersist" method="prePersist" />
+          <lifecycle-callback type="postPersist" method="postPersist" />
+      </lifecycle-callbacks>
+
+      <many-to-one target-entity="GFire\CoreBundle\Entity\ChartOfAccount" field="chartOfAccount" inversed-by="invoiceAccountEntries">
+          <join-column name="chart_of_account_id" referenced-column-name="id" />
+      </many-to-one>
+
+      <many-to-one target-entity="GFire\CoreBundle\Entity\GeneralLibrary" field="generalLibrary" inversed-by="invoiceAccountEntries">
+          <join-column name="general_library_id" referenced-column-name="id" />
+      </many-to-one>
+
+      <many-to-one target-entity="GFire\CoreBundle\Entity\Project" field="project" inversed-by="invoiceAccountEntries">
+          <join-column name="project_id" referenced-column-name="id" />
+      </many-to-one>
+
+      <many-to-one target-entity="GFire\CoreBundle\Entity\Department" field="department" inversed-by="invoiceAccountEntries">
+          <join-column name="department_id" referenced-column-name="id" />
+      </many-to-one>
+
+      <many-to-one target-entity="GFire\InvoiceBundle\Entity\Invoice" field="invoice" inversed-by="invoiceAccountEntries">
+          <join-column name="invoice_id" referenced-column-name="id" />
+      </many-to-one>
+
+      <one-to-many target-entity="GFire\InvoiceBundle\Entity\InvoiceAccountEntryOutputVat" mapped-by="invoiceAccountEntry" field="invoiceAccountEntryOutputVats"/>
+
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="gfire_core.manager.chartofaccount_group" class="GFire\CoreBundle\Entity\Manager\ChartOfAccountGroupManager">
+            <argument>GFire\CoreBundle\Entity\ChartOfAccount\Group</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_core.manager.industry" class="GFire\CoreBundle\Entity\Manager\IndustryManager">
+            <argument>GFire\CoreBundle\Entity\Industry</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_core.manager.chartofaccount.category" class="GFire\CoreBundle\Entity\Manager\ChartOfAccountCategoryManager">
+            <argument>GFire\CoreBundle\Entity\ChartOfAccount\Category</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_core.manager.project" class="GFire\CoreBundle\Entity\Manager\ProjectManager">
+            <argument>GFire\CoreBundle\Entity\Project</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_core.manager.department" class="GFire\CoreBundle\Entity\Manager\DepartmentManager">
+            <argument>GFire\CoreBundle\Entity\Department</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+
+        <service id="gfire_core.manager.currency" class="GFire\CoreBundle\Entity\Manager\CurrencyManager">
+            <argument>GFire\CoreBundle\Entity\Currency</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_core.manager.bank" class="GFire\CoreBundle\Entity\Manager\BankManager">
+            <argument>GFire\CoreBundle\Entity\Bank</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_core.manager.fixasset" class="GFire\CoreBundle\Entity\Manager\FixAssetManager">
+            <argument>GFire\CoreBundle\Entity\FixAsset</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_core.manager.prepayment" class="GFire\CoreBundle\Entity\Manager\PrePaymentManager">
+            <argument>GFire\CoreBundle\Entity\PrePayment</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_core.manager.chartofaccount" class="GFire\CoreBundle\Entity\Manager\ChartOfAccountManager">
+            <argument>GFire\CoreBundle\Entity\ChartOfAccount</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_core.manager.general_library" class="GFire\CoreBundle\Entity\Manager\GeneralLibraryManager">
+            <argument>GFire\CoreBundle\Entity\GeneralLibrary</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_core.manager.tax_expandedwithheld" class="GFire\CoreBundle\Entity\Manager\ExpandedTaxWithheldManager">
+            <argument>GFire\CoreBundle\Entity\Tax\ExpandedWithheld</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_core.manager.tax_finalwithheld" class="GFire\CoreBundle\Entity\Manager\FinalTaxWithheldManager">
+            <argument>GFire\CoreBundle\Entity\Tax\FinalWithheld</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_core.manager.generallibrary_category" class="GFire\CoreBundle\Entity\Manager\GeneralLibraryCategoryManager">
+            <argument>GFire\CoreBundle\Entity\GeneralLibrary\Category</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_core.manager.chartofaccount_validation" class="GFire\CoreBundle\Entity\Manager\ChartOfAccountValidationManager">
+            <argument>GFire\CoreBundle\Entity\ChartOfAccount\Validation</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_core.manager.chartofaccount_type" class="GFire\CoreBundle\Entity\Manager\ChartOfAccountTypeManager">
+            <argument>GFire\CoreBundle\Entity\ChartOfAccount\Type</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_core.manager.book" class="GFire\CoreBundle\Entity\Manager\BookManager">
+            <argument>GFire\CoreBundle\Entity\Book</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_core.manager.bank" class="GFire\CoreBundle\Entity\Manager\BankManager">
+            <argument>GFire\CoreBundle\Entity\Bank</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_core.manager.terms_of_payment" class="GFire\CoreBundle\Entity\Manager\TermsOfPaymentManager">
+            <argument>GFire\CoreBundle\Entity\TermsOfPayment</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+    </services>
+</container>

@@ -1,0 +1,56 @@
+{% extends "GFireSiteBundle::layout.html.twig" %}
+{%  block page_header %}Categories{% endblock page_header %}
+{%  block content %}
+    <div class="row">
+        <div class="col-md-2 text-left">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go!</button>
+              </span>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-10 text-right">
+            <a href="{{ path('generallibrary_category_new') }}" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Add New</a>
+        </div>
+    </div>
+    <div class="row top15">
+        <div class="col-md-12 col-xs-12 col-lg-12 table-responsive list_wrapper">
+            {%  include 'GFireCoreBundle:GeneralLibrary/Category:list.html.twig' with {'pager': pager,'sort_field': sort_field,'sort_order': sort_order}  %}
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".list_wrapper").each(function(){
+                var list_group = $(this);
+                $(this).delegate("a.page_nav","click",function(e){
+                    $.blockUI({ message: jyd.loadingMessage(null)});
+                    e.preventDefault();
+                    var next_page = $(this).attr('href');
+                    $.ajax({
+                        url: next_page,
+                        method: 'POST',
+                        success: function(resp){
+                            list_group.html(resp.html);
+                        }
+                    });
+                });
+                $(this).delegate("a.sort","click",function(e){
+                    $.blockUI({ message: jyd.loadingMessage(null)});
+                    e.preventDefault();
+                    var next_page = $(this).attr('href');
+                    $.ajax({
+                        url: next_page,
+                        method: 'POST',
+                        success: function(resp){
+                            list_group.html(resp.html);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+{%  endblock content %}

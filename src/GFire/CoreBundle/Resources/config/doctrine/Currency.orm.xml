@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="GFire\CoreBundle\Entity\CurrencyRepository" name="GFire\CoreBundle\Entity\Currency" table="gf__currency">
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="symbol" type="string" column="symbol" length="6"/>
+    <field name="name" type="string" column="name" length="60"/>
+    <field name="description" type="text" column="description"/>
+    <field name="createdAt" type="datetime" column="created_at"/>
+      <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
+
+      <lifecycle-callbacks>
+          <lifecycle-callback type="prePersist" method="prePersist" />
+          <lifecycle-callback type="postPersist" method="postPersist" />
+      </lifecycle-callbacks>
+
+      <one-to-many target-entity="GFire\InvoiceBundle\Entity\Invoice" mapped-by="currency" field="invoices"/>
+
+  </entity>
+</doctrine-mapping>

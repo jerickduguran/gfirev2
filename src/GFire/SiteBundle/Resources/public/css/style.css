@@ -1,0 +1,127 @@
+/**
+ *
+ * authors: Jerick Y. Duguran(jerick.duguran@gmail.com) &  Mary Ann Altar
+ * Date: January 2015
+ *
+ */
+
+body{
+    color: #989898 ;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.top5{
+    margin-top: 5px;
+}
+.top10{
+    margin-top: 10px;
+}
+.top15{
+    margin-top: 15px;
+}
+.container {
+    /*width: 940px;*/
+}
+a, a:active, a:focus {
+    outline: none;
+}
+.bold{
+    font-weight: bold;
+}
+.list_wrapper table thead th{
+    background: #289ae3;
+    color:#FFF;
+    padding:0px;
+}
+.list_wrapper table thead th.action{
+    text-align: center;
+    vertical-align: middle;
+}
+.list_wrapper table th span{
+    display:block;
+}
+
+.list_wrapper table th a{
+    color: #FFF;
+    padding-right:4px;
+    background-color: #5bba3c;
+    cursor: pointer;
+    display: block;
+    font-size: 10px;
+    height: 20px;
+    line-height: 20px;
+    opacity: 0.4;
+    text-align: center;
+    width: 100%;
+}
+.list_wrapper table th a:hover,.list_wrapper table th a.active {
+    opacity: 1;
+}
+
+.list_wrapper table th span {
+    padding:4px;
+    padding-left:10px;
+}
+
+/** login **/
+.jlm_login{
+    background: #289ae3;
+}
+.jlm_login .wrapper .logo{
+    padding: 20px 2px;
+}
+.jlm_login .wrapper{
+    width: 400px;
+    height: 500px;
+    margin: -200px -200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.jlm_login  .form-login{
+    margin-top:20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    margin: 0 auto 20px;
+    padding: 19px 29px 29px;
+}
+
+
+.jlm_login  .form-login input[type="text"],.jlm_login  .form-login input[type="password"]{
+    padding: 8px 12px;
+    height: 35px;
+    width: 100%;
+    border: 1px solid #cccccc;
+}
+.jlm_login   .form-login h3{
+    text-transform: uppercase;
+}
+
+/** end login **/
+
+.jlm-lightblue .navbar-static-top{
+	background: #289ae3;
+	color: #FFFFFF;
+}
+
+.jlm-lightblue .navbar-static-top a.navbar-brand,.jlm-lightblue .navbar-static-top .navbar-top-links a.dropdown-toggle{
+	color: #FFFFFF;
+}
+.jlm-lightblue .navbar-static-top .navbar-default .navbar-brand{
+	color: inherit;
+}
+.jlm-lightblue .navbar-static-top .sidebar{
+	color: #989898;
+}
+.jlm-lightblue .nav > li > a:hover, .jlm-lightblue .nav > li > a:focus{ 
+	color: #289ae3;
+}
+.jlm-lightblue .nav > li > a:hover, .jlm-lightblue .nav > li > a:focus{ 
+	color: #289ae3;
+}
+.jlm-lightblue .navbar-static-top .navbar-top-links a.dropdown-toggle:hover,.jlm-lightblue .navbar-static-top .navbar-top-links a.dropdown-toggle:focus{
+	color: #289ae3;
+}

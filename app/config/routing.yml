@@ -1,0 +1,22 @@
+g_fire_receipt:
+    resource: "@GFireReceiptBundle/Resources/config/routing.xml"
+    prefix:   /
+
+g_fire_invoice:
+    resource: "@GFireInvoiceBundle/Resources/config/routing.xml"
+    prefix:   /
+
+g_fire_core:
+    resource: "@GFireCoreBundle/Resources/config/routing.xml"
+    prefix:   /setup
+
+g_fire_site:
+    resource: "@GFireSiteBundle/Resources/config/routing.xml"
+    prefix:   /
+
+g_fire_user:
+    resource: "@GFireUserBundle/Resources/config/routing.xml"
+    prefix:   /users
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

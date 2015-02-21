@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="generallibrary_category" path="/">
+        <default key="_controller">GFireCoreBundle:GeneralLibrary\Category:index</default>
+    </route>
+
+    <route id="generallibrary_category_show" path="/{id}/show">
+        <default key="_controller">GFireCoreBundle:GeneralLibrary\Category:show</default>
+    </route>
+
+    <route id="generallibrary_category_new" path="/new">
+        <default key="_controller">GFireCoreBundle:GeneralLibrary\Category:new</default>
+    </route>
+
+    <route id="generallibrary_category_create" path="/create">
+        <default key="_controller">GFireCoreBundle:GeneralLibrary\Category:create</default>
+        <requirement key="_method">post</requirement>
+    </route>
+
+    <route id="generallibrary_category_edit" path="/{id}/edit">
+        <default key="_controller">GFireCoreBundle:GeneralLibrary\Category:edit</default>
+    </route>
+
+    <route id="generallibrary_category_update" path="/{id}/update">
+        <default key="_controller">GFireCoreBundle:GeneralLibrary\Category:update</default>
+        <requirement key="_method">post|put</requirement>
+    </route>
+
+    <route id="generallibrary_category_delete" path="/{id}/delete">
+        <default key="_controller">GFireCoreBundle:GeneralLibrary\Category:delete</default>
+        <requirement key="_method">post|delete</requirement>
+    </route>
+
+</routes>

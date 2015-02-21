@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <import resource="@GFireCoreBundle/Resources/config/routing/chartofaccount.xml" prefix="/chartofaccount" />
+    <import resource="@GFireCoreBundle/Resources/config/routing/chartofaccountgroup.xml" prefix="/chartofaccount/groups" />
+    <import resource="@GFireCoreBundle/Resources/config/routing/industry.xml" prefix="/industry" />
+    <import resource="@GFireCoreBundle/Resources/config/routing/project.xml" prefix="/project" />
+    <import resource="@GFireCoreBundle/Resources/config/routing/department.xml" prefix="/department" />
+    <import resource="@GFireCoreBundle/Resources/config/routing/currency.xml" prefix="/currency" />
+    <import resource="@GFireCoreBundle/Resources/config/routing/bank.xml" prefix="/bank" />
+    <import resource="@GFireCoreBundle/Resources/config/routing/prepayment.xml" prefix="/prepayment" />
+    <import resource="@GFireCoreBundle/Resources/config/routing/fixasset.xml" prefix="/fixasset" />
+    <import resource="@GFireCoreBundle/Resources/config/routing/chartofaccount_type.xml" prefix="/chartofaccount/type" />
+    <import resource="@GFireCoreBundle/Resources/config/routing/generallibrary.xml" prefix="/generallibrary" />
+    <import resource="@GFireCoreBundle/Resources/config/routing/tax_finalwithheld.xml" prefix="/taxfinalwithheld" />
+    <import resource="@GFireCoreBundle/Resources/config/routing/tax_expandedwithheld.xml" prefix="/taxexpandedwithheld" />
+    <import resource="@GFireCoreBundle/Resources/config/routing/generallibrary_category.xml" prefix="/generallibrary-category" />
+    <import resource="@GFireCoreBundle/Resources/config/routing/book.xml" prefix="/books" />
+
+</routes>

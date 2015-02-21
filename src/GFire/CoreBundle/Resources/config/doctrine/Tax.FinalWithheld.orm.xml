@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="GFire\CoreBundle\Entity\Tax\FinalWithheldRepository" name="GFire\CoreBundle\Entity\Tax\FinalWithheld" table="gf__tax_final_withheld">
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="code" type="string" column="code" length="150" unique="true"/>
+    <field name="title" type="string" length="150" column="title"/>
+    <field name="natureOfIncomePayment" type="text" column="nature_of_income_payment"/>
+    <field name="ratePercentage" type="decimal" column="rate_percentage" scale="4" precision="12"/>
+    <field name="createdAt" type="datetime" column="created_at"/>
+
+    <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
+
+    <many-to-many field="generalLibraries" mapped-by="finalWithheldTaxes" target-entity="GFire\CoreBundle\Entity\GeneralLibrary"/>
+
+    <lifecycle-callbacks>
+      <lifecycle-callback type="prePersist" method="prePersist" />
+      <lifecycle-callback type="postPersist" method="postPersist" />
+    </lifecycle-callbacks>
+  </entity>
+</doctrine-mapping>

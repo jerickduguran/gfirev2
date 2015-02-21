@@ -1,0 +1,8 @@
+g_fire_invoice_invoice_accountentry:
+    resource: "@GFireInvoiceBundle/Resources/config/routing/invoiceaccountentry.xml"
+    prefix:   /invoice_accountentry
+
+g_fire_invoice_invoice:
+    resource: "@GFireInvoiceBundle/Resources/config/routing/invoice.xml"
+    prefix:   /invoice
+

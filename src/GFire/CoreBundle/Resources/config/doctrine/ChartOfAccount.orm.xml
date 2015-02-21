@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="GFire\CoreBundle\Entity\ChartOfAccountRepository" name="GFire\CoreBundle\Entity\ChartOfAccount" table="gf__chartofaccount">
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="code" type="string" column="code" length="150"/>
+    <field name="title" type="string" column="title" length="150"/>
+    <field name="description" type="text" column="description"/>
+    <field name="enabled" type="boolean" column="enabled"/>
+    <field name="createdAt" type="datetime" column="created_at"/>
+    <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
+
+      <many-to-one target-entity="GFire\CoreBundle\Entity\ChartOfAccount\Type" field="type" inversed-by="chartOfAccounts">
+          <join-column name="type_id" referenced-column-name="id" />
+      </many-to-one>
+
+      <many-to-one target-entity="GFire\CoreBundle\Entity\ChartOfAccount\Group" field="group" inversed-by="chartOfAccounts">
+          <join-column name="group_id" referenced-column-name="id" />
+      </many-to-one>
+
+      <many-to-many field="validations" inversed-by="chartOfAccounts" target-entity="GFire\CoreBundle\Entity\ChartOfAccount\Validation">
+
+          <cascade>
+              <cascade-all/>
+          </cascade>
+
+          <join-table name="gf__chartofaccount_validations">
+              <join-columns>
+                  <join-column name="chart_of_account_id" referenced-column-name="id" />
+              </join-columns>
+              <inverse-join-columns>
+                  <join-column name="validation_id" referenced-column-name="id" />
+              </inverse-join-columns>
+          </join-table>
+      </many-to-many>
+
+      <lifecycle-callbacks>
+          <lifecycle-callback type="prePersist" method="prePersist" />
+          <lifecycle-callback type="postPersist" method="postPersist" />
+      </lifecycle-callbacks>
+
+      <one-to-many target-entity="GFire\InvoiceBundle\Entity\InvoiceAccountEntry" mapped-by="chartOfAccount" field="invoiceAccountEntries"/>
+      <one-to-many target-entity="GFire\InvoiceBundle\Entity\InvoiceAccountEntryOutputVat" mapped-by="chartOfAccount" field="invoiceAccountEntryOutputVats"/>
+
+  </entity>
+</doctrine-mapping>

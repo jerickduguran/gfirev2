@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <title>{% block title %}GFIRE - Admin {% endblock %}</title>
+    {% block stylesheets %} 
+	{% endblock %}
+    {% block javascripts %}
+        <script src="{{ asset('bundles/gfiresite/js/jquery.blockUI.js')}}"></script>
+        <script src="{{ asset('bundles/gfiresite/js/bootstrap-tabdrop.js')}}"></script>
+        <script src="{{ asset('bundles/gfiresite/js/jquery.form.min.js')}}"></script>
+        <script src="{{ asset('bundles/gfiresite/js/jydscript.js')}}"></script>
+    {% endblock %}
+</head>
+<body class="jlm-lightblue {% block body_class %}jlm_admin{% endblock body_class %}">
+    {% block body %}{% endblock %}
+
+<script type='text/javascript'>
+    window.onbeforeunload = function(e){
+        $.blockUI({ message: jyd.loadingMessage(null)});
+    };
+</script>
+</body>
+</html>

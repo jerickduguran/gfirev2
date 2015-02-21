@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+
+    <services>
+        <service id="gfire_invoice.manager.invoice" class="GFire\InvoiceBundle\Entity\Manager\InvoiceManager">
+            <argument>GFire\InvoiceBundle\Entity\Invoice</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_invoice.manager.invoice_particular_entry" class="GFire\InvoiceBundle\Entity\Manager\InvoiceParticularEntryManager">
+            <argument>GFire\InvoiceBundle\Entity\InvoiceParticularEntry</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+        <service id="gfire_invoice.manager.invoice_account_entry" class="GFire\InvoiceBundle\Entity\Manager\InvoiceAccountEntryManager">
+            <argument>GFire\InvoiceBundle\Entity\InvoiceAccountEntry</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+    </services>
+
+</container>

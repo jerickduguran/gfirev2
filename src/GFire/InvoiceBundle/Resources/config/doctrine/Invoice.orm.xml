@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="GFire\InvoiceBundle\Entity\InvoiceRepository" name="GFire\InvoiceBundle\Entity\Invoice" table="gf__invoice">
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="invoiceNumber" type="string" column="invoice_number" length="150" unique="true" nullable="false"/>
+    <field name="purchaseOrderNumber" type="string" column="purchase_order_number" length="150" nullable="false"/>
+    <field name="dateReceived" type="date" column="date_received" nullable="true"/>
+    <field name="invoiceDate" type="date" column="invoice_date" nullable="true"/>
+    <field name="period" type="date" column="period"/>
+    <field name="dueDate" type="date" column="due_date"/>
+    <field name="headerMessage" type="text" column="header_message" nullable="true"/>
+    <field name="footerMessage" type="text" column="footer_message" nullable="true"/>
+    <field name="termsOfPaymentDays" type="integer" column="terms_of_payment_days" nullable="true"/>
+    <field name="totalAmount" type="decimal" column="total_amount" precision="12" scale="4"/>
+    <field name="status" type="string" column="status" length="60"/>
+    <field name="createdAt" type="datetime" column="created_at"/>
+    <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
+
+
+      <many-to-one target-entity="GFire\CoreBundle\Entity\Book" field="book" inversed-by="invoices">
+          <join-column name="book_id" referenced-column-name="id" on-delete="SET NULL" on-update="CASCADE"/>
+      </many-to-one>
+
+      <many-to-one target-entity="GFire\CoreBundle\Entity\GeneralLibrary" field="generalLibrary" inversed-by="invoices">
+          <join-column name="general_library_id" referenced-column-name="id"/>
+      </many-to-one>
+
+      <many-to-one target-entity="GFire\CoreBundle\Entity\Currency" field="currency" inversed-by="invoices">
+          <join-column name="currency_id" referenced-column-name="id"/>
+      </many-to-one>
+
+      <many-to-one target-entity="GFire\CoreBundle\Entity\TermsOfPayment" field="termsOfPayment" inversed-by="invoices">
+          <join-column name="terms_of_payment_id" referenced-column-name="id"/>
+      </many-to-one>
+
+      <one-to-many orphan-removal="true"  target-entity="GFire\InvoiceBundle\Entity\InvoiceAccountEntry" mapped-by="invoice" field="invoiceAccountEntries">
+            <cascade><cascade-persist/></cascade>
+      </one-to-many>
+
+      <one-to-many  orphan-removal="true" target-entity="GFire\InvoiceBundle\Entity\InvoiceParticularEntry" mapped-by="invoice" field="invoiceParticularEntries">
+         <cascade><cascade-persist/></cascade>
+      </one-to-many>
+
+      <lifecycle-callbacks>
+          <lifecycle-callback type="prePersist" method="prePersist" />
+          <lifecycle-callback type="postPersist" method="postPersist" />
+      </lifecycle-callbacks>
+
+  </entity>
+</doctrine-mapping>

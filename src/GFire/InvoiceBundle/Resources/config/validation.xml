@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="GFire\InvoiceBundle\Entity\Invoice">
+        <property name="book">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>Default</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="dueDate">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>Default</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="period">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>Default</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="totalAmount">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>Default</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="invoiceNumber">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>Default</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="purchaseOrderNumber">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>Default</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="generalLibrary">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>Default</value>
+                </option>
+            </constraint>
+        </property>
+        <constraint name="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity">
+            <option name="fields">invoiceNumber</option>
+        </constraint>
+        <constraint name="GFire\InvoiceBundle\Validator\Constraints\InvoiceAccountEntryTotal">
+            <option name="groups">
+                <value>Default</value>
+            </option>
+        </constraint>
+    </class>
+    <class name="GFire\InvoiceBundle\Entity\InvoiceParticularEntry">
+        <property name="title">
+            <constraint name="NotBlank"/>
+        </property>
+        <property name="amount">
+            <constraint name="NotBlank"/>
+        </property>
+        <property name="total">
+            <constraint name="NotBlank"/>
+        </property>
+        <property name="vatApplication">
+            <constraint name="NotBlank"/>
+        </property>
+    </class>
+    <class name="GFire\InvoiceBundle\Entity\InvoiceAccountEntry">
+        <property name="chartOfAccount">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>invoice_account_entry</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="generalLibrary">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>invoice_account_entry</value>
+                </option>
+            </constraint>
+        </property>
+        <constraint name="GFire\InvoiceBundle\Validator\Constraints\InvoiceAccountEntry">
+            <option name="groups">
+                <value>invoice_account_entry</value>
+            </option>
+        </constraint>
+    </class>
+</constraint-mapping>

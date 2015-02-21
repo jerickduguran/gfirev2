@@ -1,0 +1,27 @@
+g_fire_core_book:
+    resource: "@GFireCoreBundle/Resources/config/routing/book.xml"
+    prefix:   /book
+
+g_fire_core_tax_finalwithheld:
+    resource: "@GFireCoreBundle/Resources/config/routing/tax_finalwithheld.xml"
+    prefix:   /tax_finalwithheld
+
+g_fire_core_tax_expandedwithheld:
+    resource: "@GFireCoreBundle/Resources/config/routing/tax_expandedwithheld.xml"
+    prefix:   /tax_expandedwithheld
+
+g_fire_core_generallibrary:
+    resource: "@GFireCoreBundle/Resources/config/routing/generallibrary.xml"
+    prefix:   /generallibrary
+
+g_fire_core_generallibrary_category:
+    resource: "@GFireCoreBundle/Resources/config/routing/generallibrary_category.xml"
+    prefix:   /generallibrary_category
+
+g_fire_core_chartofaccount:
+    resource: "@GFireCoreBundle/Resources/config/routing/chartofaccount.xml"
+    prefix:   /chartofaccount
+
+g_fire_core_chartofaccount_type:
+    resource: "@GFireCoreBundle/Resources/config/routing/chartofaccount_type.xml"
+    prefix:   /chartofaccount_type

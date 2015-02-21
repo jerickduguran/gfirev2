@@ -1,0 +1,112 @@
+<table class="table  table-condensed table-hover">
+    <thead>
+    <tr>
+        <th>
+            <span>Code</span>
+            {% if sort_field == 'code' %}
+                <a href="{{ path('chartofaccount_category',{'page' : pager.page,'sort_field':sort_field,'sort_order':sort_order,'sort' : 1})}}" class="sort active">
+                    <i class="glyphicon glyphicon-chevron-{{sort_order == 'asc' ? 'up': 'down'}}"></i>
+                </a>
+            {% else %}
+                <a  href="{{ path('chartofaccount_category',{'page' : pager.page,'sort_field':'code','sort_order':sort_order,'sort' : 1})}}" class="sort" >
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+            {% endif %}
+        </th>
+        <th><span>Title</span>
+            {% if sort_field == 'title' %}
+                <a href="{{ path('chartofaccount_category',{'page' : pager.page,'sort_field':sort_field,'sort_order':sort_order,'sort' : 1})}}" class="sort active">
+                    <i class="glyphicon glyphicon-chevron-{{sort_order == 'asc' ? 'up': 'down'}}"></i>
+                </a>
+            {% else %}
+                <a  href="{{ path('chartofaccount_category',{'page' : pager.page,'sort_field':'title','sort_order':sort_order,'sort' : 1})}}" class="sort" >
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+            {% endif %}
+        </th>
+
+        <th><span>Created Date</span>
+            {% if sort_field == 'createdat' %}
+                <a href="{{ path('chartofaccount_category',{'page' : pager.page,'sort_field':sort_field,'sort_order':sort_order,'sort' : 1})}}" class="sort active">
+                    <i class="glyphicon glyphicon-chevron-{{sort_order == 'asc' ? 'up': 'down'}}"></i>
+                </a>
+            {% else %}
+                <a  href="{{ path('chartofaccount_category',{'page' : pager.page,'sort_field':'createdat','sort_order':sort_order,'sort' : 1})}}" class="sort" >
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+            {% endif %}
+        </th>
+        <th>
+            <span>Last Saved</span>
+            {% if sort_field == 'updatedat' %}
+                <a href="{{ path('chartofaccount_category',{'page' : pager.page,'sort_field':sort_field,'sort_order':sort_order,'sort' : 1})}}" class="sort active">
+                    <i class="glyphicon glyphicon-chevron-{{sort_order == 'asc' ? 'up': 'down'}}"></i>
+                </a>
+            {% else %}
+                <a  href="{{ path('chartofaccount_category',{'page' : pager.page,'sort_field':'updatedat','sort_order':sort_order,'sort' : 1})}}" class="sort" >
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+            {% endif %}
+        </th>
+        <th class="action">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if pager is iterable %}
+        {% for item in pager %}
+            <tr class="draft">
+                <td>
+                    {{ item.code }}
+                </td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.createdAt|date("F d, Y h:i A") }}</td>
+                <td>{{ item.updatedAt|date("F d, Y h:i A") }}</td>
+                <td class="text-center">
+                    <a href="{{ path('chartofaccount_category_edit',{'id': item.id })}}"  title="Edit" class="btn btn-primary">Edit</a>
+                    <a href='' title="Remove" class="btn btn-primary delete-item"><i class="glyphicon glyphicon-trash"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+
+    {% else %}
+
+    <tr class="draft">
+        <td colspan="6"><h4 class="text-center">No Items Found.</h4></td>
+    </tr>
+    {% endif %}
+    </tbody>
+
+    <tfoot>
+    </tfoot>
+</table>
+
+{% if pager.haveToPaginate %}
+
+    <nav class="text-right">
+        <ul class="pagination">
+            {% if pager.page > 2  %}
+                <li><a href="{{ path('chartofaccount_category')}}" class="page_nav">&laquo;</a></li>
+            {% endif %}
+
+            {% if pager.page != pager.previouspage %}
+                <li><a href="{{ path('chartofaccount_category',{'page' : pager.previouspage,'sort_field':sort_field,'sort_order': sort_order})}}" title="" class="page_nav">&lsaquo;</a></li>
+            {% endif %}
+
+            {% for page in pager.getLinks(5) %}
+                {% if page == pager.page %}
+                    <li class="active"><a href="{{ path('chartofaccount_category',{'page' : page,'sort_field':sort_field,'sort_order': sort_order})}}" class="page_nav">{{ page }}</a></li>
+                {% else %}
+                    <li><a href="{{ path('chartofaccount_category',{'page' : page,'sort_field':sort_field,'sort_order': sort_order})}}" class="page_nav">{{ page }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if pager.page != pager.nextpage %}
+                <li><a href="{{ path('chartofaccount_category',{'page' : pager.nextpage,'sort_field':sort_field,'sort_order': sort_order})}}" title="" class="page_nav">&rsaquo;</a></li>
+            {% endif %}
+
+            {% if pager.page != pager.lastpage and pager.lastpage != pager.nextpage %}
+                <li><a href="{{ path('chartofaccount_category',{'page' : pager.lastpage,'sort_field':sort_field,'sort_order': sort_order})}}" title="" class="page_nav">&raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}

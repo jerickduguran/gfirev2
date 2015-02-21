@@ -1,0 +1,124 @@
+{% extends "GFireSiteBundle::layout.html.twig" %}
+{%  block page_header %}General Library : Edit{% endblock page_header %}
+{% block content -%}
+    <div class="row">
+        <div class="col-xs-12 col-md-12 text-right">
+            <a href="javascript:void(0);" onclick="{{ form.vars.id }}.submit();" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Save</a>
+            <a href="{{ path('generallibrary') }}" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Back to List</a>
+        </div>
+    </div>
+
+    {{ form_start(form) }}
+
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_row(form.code) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.name) }}
+        </div>
+        <div class="col-md-6">
+          {{ form_row(form.active) }}
+        </div>
+    </div>
+    <ul class="nav nav-tabs tabdrop" role="tablist">
+        <li role="presentation" class="active"><a href="#maininfo" data-toggle="tab">Main Information</a></li>
+        <li role="presentation"><a href="#additionalinfo" data-toggle="tab">Additional Information</a></li>
+        <li role="presentation"><a href="#billinginfo"  data-toggle="tab">Billing Information</a></li>
+    </ul>
+
+    <div class="row top15">
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="maininfo">
+                <div class="col-md-6">
+                    {{ form_row(form.addressStreet1) }}
+                </div>
+                <div class="col-md-6">
+                     {{ form_row(form.addressStreet2) }}
+                </div>
+                <div class="col-md-6">
+                     {{ form_row(form.addressCity) }}
+                </div>
+                <div class="col-md-6">
+                     {{ form_row(form.addressPostcode) }}
+                </div>
+                <div class="col-md-6">
+                     {{ form_row(form.addressRegion) }}
+                </div>
+                <div class="col-md-6">
+                     {{ form_row(form.addressCountry) }}
+                </div>
+                <div class="col-md-6">
+                     {{ form_row(form.contactPerson) }}
+                </div>
+                <div class="col-md-6">
+                     {{ form_row(form.contactPersonPosition) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.telephoneNumber) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.faxNumber) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.mobileNumber) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.website) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.emailAddress) }}
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="additionalinfo">
+                <div class="col-md-6">
+                 {{ form_row(form.tinNumber) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.category) }}
+                </div>
+                <div class="col-md-6">
+                 {{ form_row(form.industry) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.discountRate) }}
+                </div>
+                <div class="col-md-6">
+                 {{ form_row(form.finalWithheldTaxes) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.expandedWithheldTaxes) }}
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="billinginfo">
+                <div class="col-md-6">
+                    {{ form_row(form.drawingNumber) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.specsNumber) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.billTo) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.billingAddress1) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.billingAddress2) }}
+                </div>
+                <div class="col-md-6">
+                      {{ form_row(form.attention) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+    <div class="row">
+        <div class="col-xs-12 col-md-12 text-right">
+            <a href="javascript:void(0);" onclick="{{ form.vars.id }}.submit();" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Save</a>
+            <a href="{{ path('generallibrary') }}" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Back to List</a>
+        </div>
+    </div>
+{% endblock %}

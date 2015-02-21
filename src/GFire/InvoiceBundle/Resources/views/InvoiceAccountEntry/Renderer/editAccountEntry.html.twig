@@ -1,0 +1,30 @@
+{{ form_start(form,{'attr' : {'id' : 'invoice_account_entry'}}) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var options = {
+            dataType: 'json',
+            clearForm: true,
+            resetForm: true,
+            timeout:   10000,
+            beforeSubmit: function(){
+                $.blockUI({ message: jyd.loadingMessage(null)});
+            },
+            success: function(resp){
+                if(resp.success == true){
+                    $("#account_entry_list").html(resp.list);
+                    _modal.modal('hide');
+                }else{
+                    $('#modal-account-entry').find(".modal-body").html(resp.edit_form);
+                }
+            }
+        };
+        $('form#invoice_account_entry').submit(function() {
+            $(this).ajaxSubmit(options);
+            return false;
+        });
+    })
+</script>
+

@@ -1,0 +1,140 @@
+{% extends "GFireSiteBundle::layout.html.twig" %}
+{%  block page_header %}Invoice : Edit{% endblock page_header %}
+{% block content -%}
+    <div class="row">
+        <div class="col-xs-12 col-md-12 text-right">
+            <a href="javascript:void(0);" onclick="{{ form.vars.id }}.submit();" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Save</a>
+            <a href="{{ path('invoice') }}" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Back to List</a>
+        </div>
+    </div>
+    <ul class="nav nav-tabs tabdrop" role="tablist">
+        <li role="presentation" class="active"><a href="#maininfo" data-toggle="tab">General Information</a></li>
+        <li role="presentation" class="disabled"><a href="#particulars" data-toggle="tab">Particulars</a></li>
+        <li role="presentation"><a href="#account_entries"  data-toggle="tab">Account Entries</a></li>
+    </ul>
+
+    {{ form_start(form) }}
+    <div class="row top15">
+        <div class="col-md-12">
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="maininfo">
+                    <div class="row">
+                            <div class="col-md-6">
+                                {{ form_row(form.book) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(form.invoiceNumber) }}
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form_row(form.generalLibrary) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.purchaseOrderNumber) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form_row(form.dateReceived) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.invoiceDate) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form_row(form.period) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.dueDate) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form_row(form.termsOfPaymentDays) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.totalAmount) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form_row(form.termsOfPayment) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.status) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.currency) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="particulars">
+                    <div class="container-fluid particular_entries">
+                        {# % for particular_entry in form.invoiceParticularEntries  %}
+
+                        {% do form.invoiceParticularEntries.setRendered %}
+                            <div class="row particular_entry">
+                                <div class="col-md-2">
+                                    {{ form_row(particular_entry.title) }}
+                                </div><div class="col-md-2">
+                                    {{ form_row(particular_entry.amount) }}
+                                </div><div class="col-md-2">
+                                    {{ form_row(particular_entry.vatApplication) }}
+                                </div><div class="col-md-2">
+                                    {{ form_row(particular_entry.taxFinalWithheld) }}
+                                </div><div class="col-md-2">
+                                    {{ form_row(particular_entry.taxExpandedWithheld) }}
+                                </div><div class="col-md-2">
+                                    {{ form_row(particular_entry.total) }}
+                                </div>
+                            </div>
+                        #}
+                        <div class="row text-right">
+                            <div class="col-md-12">
+                                <a href="javascript:void(0);" class="btn btn-primary btn-add-particular-entry"><i class="glyphicon glyphicon-plus-sign"></i> Add New Entry</a>
+                            </div>
+                        </div>
+                    </div>
+                    {# PROTOTYPE #}
+                        {#
+                        <div id="particular_entry_id" class="hidden">
+                            <div class="row particular_entry">
+                                <div class="col-md-2">
+                                    {{ form_row(form.invoiceParticularEntries.vars.prototype.title) }}
+                                </div><div class="col-md-2">
+                                    {{ form_row(form.invoiceParticularEntries.vars.prototype.amount) }}
+                                </div><div class="col-md-2">
+                                    {{ form_row(form.invoiceParticularEntries.vars.prototype.vatApplication) }}
+                                </div><div class="col-md-2">
+                                    {{ form_row(form.invoiceParticularEntries.vars.prototype.taxFinalWithheld) }}
+                                </div><div class="col-md-2">
+                                    {{ form_row(form.invoiceParticularEntries.vars.prototype.taxExpandedWithheld) }}
+                                </div><div class="col-md-2">
+                                    {{ form_row(form.invoiceParticularEntries.vars.prototype.total) }}
+                                </div>
+                            </div>
+                        </div>
+                        {# END PROTOTYPE #}
+                </div>
+                <div class="tab-pane fade" id="account_entries">
+                    <div class="row">
+                        <div class="col-md-12">
+                             {{ form_errors(form) }}
+                             {{ render(controller( 'GFireInvoiceBundle:InvoiceAccountEntry:index',{'invoice_id': invoice.id})) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+    <div class="row top15">
+        <div class="col-xs-12 col-md-12 text-right">
+            <a href="javascript:void(0);" onclick="{{ form.vars.id }}.submit();" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Save</a>
+            <a href="{{ path('invoice') }}" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Back to List</a>
+        </div>
+    </div>
+
+{% endblock %}

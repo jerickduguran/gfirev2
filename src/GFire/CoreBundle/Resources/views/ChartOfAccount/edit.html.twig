@@ -1,0 +1,54 @@
+{% extends "GFireSiteBundle::layout.html.twig" %}
+{%  block page_header %}Chart Of Accounts : Edit{% endblock page_header %}
+{% block content -%}
+    <div class="row">
+        <div class="col-xs-12 col-md-12 text-right">
+            <a href="javascript:void(0);" onclick="{{ form.vars.id }}.submit();" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Save</a>
+            <a href="{{ path('chartofaccount') }}" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Back to List</a>
+        </div>
+    </div>
+    {{ form_start(form) }}
+    <div class="row">
+            {{ form_row(form.code) }}
+            {{ form_row(form.title) }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.type) }}
+            {{ form_row(form.validations) }}
+            {{ form_row(form.group) }}
+            {{ form_row(form.enabled) }}
+    </div>
+    {{ form_end(form) }}
+    <div class="row">
+        <div class="col-xs-12 col-md-12 text-right">
+            <a href="javascript:void(0);" onclick="{{ form.vars.id }}.submit();" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Save</a>
+            <a href="{{ path('chartofaccount') }}" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Back to List</a>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            var c_type = $("#{{ form.type.vars.id }}");
+
+            c_type.change(function(){
+                var $form  = $(this).closest('form');
+                var data = {};
+                data[c_type.attr('name')] = c_type.val();
+                $.ajax({
+                    url : $form.attr('action'),
+                    type: $form.attr('method'),
+                    data: data,
+                    success: function(resp){
+                        $('#{{ form.validations.vars.id }}').replaceWith(
+                                $(resp).find('#{{ form.validations.vars.id }}')
+                        );
+                    }
+                })
+            });
+
+        })
+
+    </script>
+
+{% endblock %}

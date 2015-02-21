@@ -1,0 +1,157 @@
+<table class="table  table-condensed table-hover">
+    <thead>
+    <tr>
+        <th>
+            <span>Code</span>
+            {% if sort_field == 'code' %}
+                <a href="{{ path('generallibrary',{'page' : pager.page,'sort_field':sort_field,'sort_order':sort_order,'sort' : 1})}}" class="sort active">
+                    <i class="glyphicon glyphicon-chevron-{{sort_order == 'asc' ? 'up': 'down'}}"></i>
+                </a>
+            {% else %}
+                <a  href="{{ path('generallibrary',{'page' : pager.page,'sort_field':'code','sort_order':sort_order,'sort' : 1})}}" class="sort" >
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+            {% endif %}
+        </th>
+        <th><span>Name</span>
+            {% if sort_field == 'name' %}
+                <a href="{{ path('generallibrary',{'page' : pager.page,'sort_field':sort_field,'sort_order':sort_order,'sort' : 1})}}" class="sort active">
+                    <i class="glyphicon glyphicon-chevron-{{sort_order == 'asc' ? 'up': 'down'}}"></i>
+                </a>
+            {% else %}
+                <a  href="{{ path('generallibrary',{'page' : pager.page,'sort_field':'name','sort_order':sort_order,'sort' : 1})}}" class="sort" >
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+            {% endif %}
+        </th>
+        <th><span>City</span>
+            {% if sort_field == 'city' %}
+                <a href="{{ path('generallibrary',{'page' : pager.page,'sort_field':sort_field,'sort_order':sort_order,'sort' : 1})}}" class="sort active">
+                    <i class="glyphicon glyphicon-chevron-{{sort_order == 'asc' ? 'up': 'down'}}"></i>
+                </a>
+            {% else %}
+                <a  href="{{ path('generallibrary',{'page' : pager.page,'sort_field':'city','sort_order':sort_order,'sort' : 1})}}" class="sort" >
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+            {% endif %}
+        </th>
+        <th><span>Contact Person</span>
+            {% if sort_field == 'city' %}
+                <a href="{{ path('generallibrary',{'page' : pager.page,'sort_field':sort_field,'sort_order':sort_order,'sort' : 1})}}" class="sort active">
+                    <i class="glyphicon glyphicon-chevron-{{sort_order == 'asc' ? 'up': 'down'}}"></i>
+                </a>
+            {% else %}
+                <a  href="{{ path('generallibrary',{'page' : pager.page,'sort_field':'contactperson','sort_order':sort_order,'sort' : 1})}}" class="sort" >
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+            {% endif %}
+        </th>
+        <th><span>TIN Number</span>
+            {% if sort_field == 'city' %}
+                <a href="{{ path('generallibrary',{'page' : pager.page,'sort_field':sort_field,'sort_order':sort_order,'sort' : 1})}}" class="sort active">
+                    <i class="glyphicon glyphicon-chevron-{{sort_order == 'asc' ? 'up': 'down'}}"></i>
+                </a>
+            {% else %}
+                <a  href="{{ path('generallibrary',{'page' : pager.page,'sort_field':'tinnumber','sort_order':sort_order,'sort' : 1})}}" class="sort" >
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+            {% endif %}
+        </th>
+        <th>
+            <span>Active</span>
+            {% if sort_field == 'active' %}
+                <a href="{{ path('generallibrary',{'page' : pager.page,'sort_field':sort_field,'sort_order':sort_order,'sort' : 1})}}" class="sort active">
+                    <i class="glyphicon glyphicon-chevron-{{sort_order == 'asc' ? 'up': 'down'}}"></i>
+                </a>
+            {% else %}
+                <a  href="{{ path('generallibrary',{'page' : pager.page,'sort_field':'active','sort_order':sort_order,'sort' : 1})}}" class="sort" >
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+            {% endif %}
+        </th>
+        <th><span>Created Date</span>
+            {% if sort_field == 'createdat' %}
+                <a href="{{ path('generallibrary',{'page' : pager.page,'sort_field':sort_field,'sort_order':sort_order,'sort' : 1})}}" class="sort active">
+                    <i class="glyphicon glyphicon-chevron-{{sort_order == 'asc' ? 'up': 'down'}}"></i>
+                </a>
+            {% else %}
+                <a  href="{{ path('generallibrary',{'page' : pager.page,'sort_field':'createdat','sort_order':sort_order,'sort' : 1})}}" class="sort" >
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+            {% endif %}
+        </th>
+        <th>
+            <span>Last Saved</span>
+            {% if sort_field == 'updatedat' %}
+                <a href="{{ path('generallibrary',{'page' : pager.page,'sort_field':sort_field,'sort_order':sort_order,'sort' : 1})}}" class="sort active">
+                    <i class="glyphicon glyphicon-chevron-{{sort_order == 'asc' ? 'up': 'down'}}"></i>
+                </a>
+            {% else %}
+                <a  href="{{ path('generallibrary',{'page' : pager.page,'sort_field':'updatedat','sort_order':sort_order,'sort' : 1})}}" class="sort" >
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+            {% endif %}
+        </th>
+        <th class="action">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if pager is iterable %}
+        {% for group in pager %}
+            <tr class="draft">
+                <td> {{ group.code }}</td>
+                <td>{{ group.name }}</td>
+                <td>{{ group.addressCity }}</td>
+                <td>{{ group.contactPerson }}</td>
+                <td>{{ group.tinNumber }}</td>
+                <td class="text-center">{% if group.active %}<i class="glyphicon glyphicon-ok"></i>{%  else %} <i class="glyphicon glyphicon-remove"></i>{% endif %}</td>
+                <td>{{ group.createdAt|date("F d, Y h:i A") }}</td>
+                <td>{{ group.updatedAt|date("F d, Y h:i A") }}</td>
+                <td class="text-center">
+                    <a href="{{ path('generallibrary_edit',{'id': group.id })}}"  title="Edit" class="btn btn-primary">Edit</a>
+                    <a href='' title="Remove" class="btn btn-primary delete-item"><i class="glyphicon glyphicon-trash"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+
+    {% else %}
+        <tr class="draft">
+            <td colspan="6"><h4 class="text-center">No Items Found.</h4></td>
+        </tr>
+    {% endif %}
+    </tbody>
+
+    <tfoot>
+    </tfoot>
+</table>
+
+{% if pager.haveToPaginate %}
+
+    <nav class="text-right">
+        <ul class="pagination">
+            {% if pager.page > 2  %}
+                <li><a href="{{ path('generallibrary')}}" class="page_nav">&laquo;</a></li>
+            {% endif %}
+
+            {% if pager.page != pager.previouspage %}
+                <li><a href="{{ path('generallibrary',{'page' : pager.previouspage,'sort_field':sort_field,'sort_order': sort_order})}}" title="" class="page_nav">&lsaquo;</a></li>
+            {% endif %}
+
+            {% for page in pager.getLinks(5) %}
+                {% if page == pager.page %}
+                    <li class="active"><a href="{{ path('generallibrary',{'page' : page,'sort_field':sort_field,'sort_order': sort_order})}}" class="page_nav">{{ page }}</a></li>
+                {% else %}
+                    <li><a href="{{ path('generallibrary',{'page' : page,'sort_field':sort_field,'sort_order': sort_order})}}" class="page_nav">{{ page }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if pager.page != pager.nextpage %}
+                <li><a href="{{ path('generallibrary',{'page' : pager.nextpage,'sort_field':sort_field,'sort_order': sort_order})}}" title="" class="page_nav">&rsaquo;</a></li>
+            {% endif %}
+
+            {% if pager.page != pager.lastpage and pager.lastpage != pager.nextpage %}
+                <li><a href="{{ path('generallibrary',{'page' : pager.lastpage,'sort_field':sort_field,'sort_order': sort_order})}}" title="" class="page_nav">&raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}

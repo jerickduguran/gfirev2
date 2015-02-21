@@ -1,0 +1,26 @@
+{% extends "GFireSiteBundle::layout.html.twig" %}
+{%  block page_header %}Fix Asset : New{% endblock page_header %}
+{% block content -%}
+    <div class="row">
+        <div class="col-md-2 text-left"><div class="input-group">
+                                      <input type="text" class="form-control" placeholder="Search for...">
+                                      <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">Go!</button>
+                                      </span>
+                                    </div><div class="col-xs-12 col-md-10 text-right">
+            <a href="javascript:void(0);" onclick="{{ form.vars.id }}.submit();" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Save</a>
+            <a href="{{ path('fixasset') }}" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Back to List</a>
+        </div>
+    </div>
+    <div class="row">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-12 text-right">
+            <a href="javascript:void(0);" onclick="{{ form.vars.id }}.submit();" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Save</a>
+            <a href="{{ path('fixasset') }}" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Back to List</a>
+        </div>
+    </div>
+{% endblock %}
